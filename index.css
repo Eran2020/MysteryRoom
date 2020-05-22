@@ -1,7 +1,28 @@
-.image-background {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+
+#background {
+    position: relative;
+    width:1200px;
+    height:600px;
+    margin-left: 150px;
+    margin-right: 100px;
     margin-top:50px;
-  
+    margin-bottom:50px
 }
+
+#image-rarrow {
+    position:absolute;
+    width:100px;
+    height:50px;
+    top:275px;
+    right:20px;
+}
+
+#image-larrow {
+    position:absolute;
+    width:100px;
+    height:50px;
+    top:275px;
+    left:20px;
+}
+
+
