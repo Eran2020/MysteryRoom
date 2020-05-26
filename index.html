@@ -7,14 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="background">
-        <img src="frontwall.png" style="width:100%;height:100%;">
-        <a href="index.js:test()">
+    <script src="index.js"></script>
+    <div id="container">
+        <img id="image-background" src="front_wall.png" style="width:100%;height:100%;">
+        <a href="javascript:changeRoom('right')">
             <img id="image-rarrow" src="right_arrow.png">
+        </a>
+        <a href="javascript:changeRoom('left')">
             <img id="image-larrow" src="left_arrow.png">
         </a>
+        <p id="text"></p>
+        <div id="front_wall" style="display:block">
+        </div>
+        <div id="right_wall" style="display:none">
+            <img id="image-bookshelf" usemap="#bookmap" src="bookshelf.png" onmousemove=showCoords(event)>
+            <map name="bookmap">
+                <area shape="rect" coords="25,16,41,91" href="javascript:showImg('green-book')">
+            </map>
+            <p id="coords"></p>
+        </div>
+        <div id="back_wall" style="display:none">
+        </div>
+        <div id="left_wall" style="display:none">
+        </div>
     </div>
-
-    <script src="index.js"></script>
+    <script>
+        function showCoords(event) {
+            var x = event.offsetX;
+            var y = event.offsetY;
+            var coords = "X coords: " + x + ", Y coords: " + y;
+            document.getElementById("coords").innerHTML = coords;
+        }
+    </script>
 </body>
 </html>
