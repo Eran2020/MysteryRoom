@@ -2,6 +2,8 @@ var wallId = 0;
 var wallSRC = ["front_wall.png", "right_wall.png", "back_wall.png", "left_wall.png"];
 var walls = ["front_wall", "right_wall", "back_wall", "left_wall"];
 
+var userItem = null;
+
 function changeRoom(dir) {
     document.getElementById(walls[wallId]).style.display = "none";
     if (dir=="right") {
@@ -19,10 +21,25 @@ function changeRoom(dir) {
 
 function showImg(item) {
     switch (item) {
-        case "green-book":
-            document.getElementById("text").innerHTML = "Here's a green book!";
+        case 'safe':
+            document.getElementById("image-safe").style.display = "block";
             break;
         default:
-            document.getElementById("text").innerHTML = "Here's something!";
+            document.getElementById("text").innerHTML = "Here's a "+item+"!" ;
+    }
+}
+
+function hideImg(item){
+    switch (item) {
+        case 'bookshelf':
+            document.getElementById("image-bookshelf").style.display = "none";
+            document.getElementById("image-bookshelf-side").style.display = "block";
+            break;
+        case 'clock':
+            if (userItem != "clock-key")
+                document.getElementById("text").innerHTML = "The clock appears to be locked. Perhaps there is a key lying around."
+            else
+                document.getElementById("image-clock").style.display = "none";
+            break;
     }
 }
