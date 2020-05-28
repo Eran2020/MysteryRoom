@@ -10,6 +10,13 @@
     <script src="index.js"></script>
     <div id="container">
         <img id="image-background" src="front_wall.png" style="width:100%;height:100%;" onmousemove="showCoords(event)">
+        <a href="javascript:showImg('slot-1')">
+            <img id="image-slot-1" src="slot.png">
+        </a>
+        <a href="javascript:showImg('slot-2')">
+            <img id="image-slot-2" src="slot.png">
+        </a>
+        <img id="image" src="slot.png">
         <a href="javascript:changeRoom('right')">
             <img id="image-rarrow" src="right_arrow.png">
         </a>
@@ -17,8 +24,10 @@
             <img id="image-larrow" src="left_arrow.png">
         </a>
         <p class="middle" id="text"></p>
+
         <div id="front_wall" style="display:block">
         </div>
+
         <div id="right_wall" style="display:none">
             <img id="image-safe" src="vault.png" usemap="#safemap">
             <map name="safemap">
@@ -34,19 +43,33 @@
             </map>
             <img id="image-bookshelf-side" src="bookshelf_side.png">
         </div>
+
         <div id="back_wall" style="display:none">
+            <img id="image-rain" src="rain.gif">
+            <img id="image-window" src="window.png">
+            <img id="image-warning" src="warning.gif">
+            <a id="gun" href="javascript:pickUpItem('gun')">
+            </a>
+            <audio id="sfx-rain" loop>
+                <source src="rain.mp3" type="audio/mp3">
+            </audio>
         </div>
+
         <div id="left_wall" style="display:none">
-            <img id="image-clock" usemap="#clockmap" src="clock.png">
+            <a href="javascript:hideImg('picture')">
+                <img id="image-picture" src="picture.png">
+            </a>
+            <a href="javascript:hideImg('clock')">
+                <img id="image-clock" src="clock.png">
+            </a>
+            <!--<img id="image-clock" usemap="#clockmap" src="clock.png">
             <map name="clockmap">
                 <area shape="circle" coords="47.625,47.625,47.625" href="javascript:hideImg('clock')">
-            </map>
-            <div onmousemove="showCoords(event)">
-                <img id="image-train" src="train.gif">
-                <a href="" id="clock-key">
-                
-                </a>
-            </div>
+            </map>-->
+            <a href="javascript:hideImg('clock-key')">
+                <img id="image-clock-key" src="clock_key.png">
+            </a>
+            <img id="image-train" src="train.gif">
         </div>
         <p id="coords"></p>
     </div>
