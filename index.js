@@ -57,6 +57,8 @@ function hideImg(item){
             break;
         case 'clock':
             if (userHasItem('clock-key')) {
+                document.getElementById("text").innerHTML = "";
+                document.getElementById("sfx-creak").play();
                 document.getElementById("image-clock").style.display = "none";
                 loseItem('clock-key');
             }
@@ -83,6 +85,17 @@ function userHasItem(item) {
 }
 
 function pickUpItem(item) {
+    let x;
+    if (item=="gun") {
+        x = document.getElementById("sfx-gun");
+        x.volume = 0.3;
+        x.play();
+    }
+    else {
+        x = document.getElementById("sfx-pickup");
+        x.volume = 0.4;
+        x.play();
+    }
     for (i=0;i<userItems.length;i++) {
         if (userItems[i] == null) {
             userItems[i] = item;
@@ -114,9 +127,16 @@ function loseItem(item) {
 }
 
 function playAudio(wallId) {
+    let x;
     switch(wallId) {
         case 2:
-            document.getElementById("sfx-rain").play();
+            x = document.getElementById("sfx-rain");
+            x.volume = 0.1;
+            x.play();
+            break;
+        case 3:
+            x = document.getElementById("sfx-clock");
+            x.play();
             break;
     }
 }
@@ -125,6 +145,9 @@ function pauseAudio(test) {
     switch(test) {
         case 2:
             document.getElementById("sfx-rain").pause();
+            break;
+        case 3:
+            document.getElementById("sfx-clock").pause();
             break;
     }
 }
