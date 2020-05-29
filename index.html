@@ -8,8 +8,8 @@
 </head>
 <body>
     <script src="index.js"></script>
-    <div id="container">
-        <img id="image-background" src="front_wall.png" style="width:100%;height:100%;" onmousemove="showCoords(event)">
+    <div id="container" onclick="javascript:lever(event)">
+        <img id="image-background" src="front_wall.png" style="width:100%;height:100%;">
         <a href="javascript:showImg('slot-1')">
             <img id="image-slot-1" src="slot.png">
         </a>
@@ -17,13 +17,6 @@
             <img id="image-slot-2" src="slot.png">
         </a>
         <img id="image" src="slot.png">
-        <a href="javascript:changeRoom('right')">
-            <img id="image-rarrow" src="right_arrow.png">
-        </a>
-        <a href="javascript:changeRoom('left')">
-            <img id="image-larrow" src="left_arrow.png">
-        </a>
-        <p class="middle" id="text"></p>
 
         <audio id="sfx-pickup">
             <source src="pickup.mp3" type="audio/mp3">
@@ -36,13 +29,24 @@
         </audio>
 
         <div id="front_wall" style="display:block">
+            <img id="fw" usemap="#keyp" src="front_wall.png" style="width:100%;height:100%;">
+            <map name="keyp" id="keymap" style="outline:0; border:none">
+                <area style="outline:0; border:none" shape="rect" coords="461,302,491,340"
+                    href="javascript:showImg('pass')">
+            </map>
+            <img id="keypad" style="position:absolute;top:0px;left:280px;display:inline-block">
+            <p id="des" style="position:absolute;top:20px;left:350px;font-size:30px"></p>
+            <p id="ji"></p>
         </div>
 
+        <a href="javascript:changeRoom('right')">
+            <img id="image-rarrow" src="right_arrow.png">
+        </a>
+        <a href="javascript:changeRoom('left')">
+            <img id="image-larrow" src="left_arrow.png">
+        </a>
+
         <div id="right_wall" style="display:none">
-            <img id="image-safe" src="vault.png" usemap="#safemap">
-            <map name="safemap">
-                <area shape="rect" coords="19,66,39,79" href="javascript:showImg('combination-padlock')">
-            </map>
             <img id="image-bookshelf" usemap="#bookmap" src="bookshelf.png">
             <map name="bookmap">
                 <area shape="rect" coords="25,16,41,91" href="javascript:showImg('green-book')">
@@ -51,7 +55,73 @@
                 <area shape="rect" coords="266,300,275,368" href="javascript:hideImg('bookshelf');showImg('safe')">
                 <area shape="rect" coords="25,384,40,456" href="javascript:showImg('yellow-book')">
             </map>
+            <img id="opensafe" style="display:none">
+            <div id="pad" style="display:none">
+             <img id="padlock" style="display:none">
+                <div id = "PI">
+                    <select id="selector1">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=0>0</option>
+                    </select>
+                    <select id="selector2"> 
+                        <option value=2>2</option>
+                        <option value=1>1</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=0>0</option>
+                    </select>
+                    <select id="selector3">
+                        <option value=3>3</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>                       
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=0>0</option>
+                    </select>
+                    <select id="selector4">
+                        <option value=4>4</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>                      
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=0>0</option>
+                    </select>
+                </div>
+            </div>
+            <p id="des-rw" style="position:absolute;top:20px;left:350px;font-size:30px"></p>
+            <img id="image-safe" src="vault-open.png">
+            <img id="image-safe-cover" src="vault-cover.png" usemap="#safemap">
+            <map name="safemap" >
+                <area shape="rect" coords="19,66,39,79" href="javascript:showImg('combination')">
+            </map>
             <img id="image-bookshelf-side" src="bookshelf_side.png">
+            <a href="javascript:hideImg('note')">
+                <img id="image-note" src="note.png">
+            </a>
+            <audio id="sfx-vault">
+                <source src="vault.mp3" type="audio/mp3">
+            </audio>
         </div>
 
         <div id="back_wall" style="display:none">
@@ -84,15 +154,7 @@
                 <source src="clock.mp3" type="audio/mp3">
             </audio>
         </div>
-        <p id="coords"></p>
+        <p class="middle" id="text"></p>
     </div>
-    <script>
-        function showCoords(event) {
-            var x = event.offsetX;
-            var y = event.offsetY;
-            var coords = "X coords: " + x + ", Y coords: " + y;
-            document.getElementById("coords").innerHTML = coords;
-        }
-    </script>
 </body>
 </html>
