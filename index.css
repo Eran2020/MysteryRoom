@@ -1,4 +1,5 @@
 
+
 .middle {
     position: absolute;
     top:50%;
@@ -144,4 +145,79 @@
     height:20px;
     top:350px;
     left:160px;
+}
+
+#opensafe {
+    position:absolute;
+    width:150px;
+    height:100px;
+    top:300px;
+    left:225px;
+    display: none;
+}
+#pad{
+    position:absolute;
+    top:80px;
+    height:450px;
+    padding-left: 40%;
+
+}
+#padlock {
+    position:absolute;
+    width:70%;
+}
+#PI{
+
+    font-style:oblique;
+    font-size:20px;
+
+}
+#selector1{
+    position:absolute;
+    float:left;
+    
+    top:330px;
+    margin-left: 60px;;
+  
+
+
+}
+#selector2{
+    position:absolute;
+    float:left;
+    
+    top:330px;
+    margin-left: 120px;;
+  
+
+
+}
+#selector3{
+    position:absolute;
+    float:left;
+    
+    top:330px;
+    margin-left: 185px;;
+  
+
+
+}
+#selector4{
+    position:absolute;
+    float:left;
+    
+    top:330px;
+    margin-left: 248px;;
+  
+
+
+}
+#fw {
+    position: absolute;
+    width:1200px;
+    height:600px;
+    top:0;
+    left:0;
+
+    
 }
