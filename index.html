@@ -1,13 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
+
 <body>
-    <img class="image-background" src="frontwall.png" style="width:75%;height:100%">
+
+    <script src="index.js"></script>
+    <div id="container" onclick="javascript:lever(event)">
+        <img id="image-background" src="front_wall.png" style="width:100%;height:100%;">
+
+
+        <p id="text">sdfadf</p>
+
+        <div id="front_wall" style="display:block">
+            <img id="fw" usemap="#keyp" src="front_wall.png" style="width:100%;height:100%;">
+            <map name="keyp" id="keymap" style="outline:0; border:none">
+                <area style="outline:0; border:none" shape="rect" coords="461,302,491,340"
+                    href="javascript:showImg('pass')">
+            </map>
+            <img id="keypad" style="position:absolute;top:0px;left:280px;display:inline-block"
+                onmousemove=showCoords(event)>
+            <p id="des" style="position:absolute;top:20px;left:350px;font-size:30px"></p>
+            <p id="ji"></p>
+        </div>
+
+
+        <a href="javascript:changeRoom('right')">
+            <img id="image-rarrow" src="right_arrow.png">
+        </a>
+
+        <a href="javascript:changeRoom('left')">
+            <img id="image-larrow" src="left_arrow.png">
+        </a>
+
+
+
+        <div id="right_wall" style="display:none">
+            <img id="image-bookshelf" usemap="#bookmap" src="bookshelf.png">
+          
+            <map name="bookmap">
+
+                <area shape="rect" coords="25,16,41,91" href="javascript:showImg('green-book')">
+                <area shape="rect" coords="166,122,181,193" href="javascript:showImg('red-book')">
+                <area shape="rect" coords="226,200,239,272" href="javascript:showImg('pink-book')">
+                <area shape="rect" coords="266,300,275,368" href="javascript:showImg('safe')">
+                <area shape="rect" coords="25,384,40,456" href="javascript:showImg('yellow-book')">
+            </map>
+            <img id="opensafe" style="display:none">
+            <div id="pad" style="display:none">
+             <img id="padlock" style="display:none">
+                <div id = "PI">
+                    <select id="selector1">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=0>0</option>
+                    </select>
+                    <select id="selector2"> 
+                        <option value=2>2</option>
+                        <option value=1>1</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=0>0</option>
+                    </select>
+                    <select id="selector3">
+                        <option value=3>3</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>                       
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=0>0</option>
+                    </select>
+                    <select id="selector4">
+                        <option value=4>4</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>                      
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=0>0</option>
+                    </select>
+                </div>
+            </div>
+            <p id="des-rw" style="position:absolute;top:20px;left:350px;font-size:30px"></p>
+            <p id="cart">ddhd</p>
+            <img id="image-safe" src="vault.png" usemap="#safemap">
+            <map name="safemap" >
+                <area shape="rect" coords="19,66,39,79" href="javascript:showImg('combination')">
+            </map>
+            <img id="image-bookshelf-side" src="bookshelf_side.png">
+        </div>
+
+        <div id="back_wall" style="display:none">
+        </div>
+        <div id="left_wall" style="display:none">
+        </div>
+    </div>
+    <script>
+        function showCoords(event) {
+            var x = event.offsetX;
+            var y = event.offsetY;
+            var coords = "X coords: " + x + ", Y coords: " + y;
+            document.getElementById("ji").innerHTML = coords;
+        }
+    </script>
 </body>
+
 </html>
+
