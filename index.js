@@ -4,6 +4,14 @@ var walls = ["front_wall", "right_wall", "back_wall", "left_wall"];
 var keypad = "keypad_large.png";
 var padlock="padlock.jpg";
 var store="";
+var val=0;
+var jump;
+var wa=false;
+var end = 0;
+var pic1;
+var userItems = [null, null];
+var sBadend, sBadsc,gunC,doorOpen,machineCol;
+
 function changeRoom(dir) {
     document.getElementById(walls[wallId]).style.display = "none";
   
@@ -21,14 +29,15 @@ function changeRoom(dir) {
     document.getElementById(walls[wallId]).style.display = "block";
 }
 
-function dist(x1,y1,x2,y2){
+function dst(x1,y1,x2,y2){
     return Math.sqrt(Math.pow((x2-x1),2)+Math.pow((y2-y1),2));
 }
 function lever(event){
     if(wallId == 0) scr(event,'keypad');
     else if (wallId == 1) twist(event, 'padlock');
 }
-var val=0;
+
+
 function twist(event,str){
     if(ca == 2) {
         val = 0;
@@ -79,11 +88,30 @@ function twist(event,str){
     }
 
 }
-function createS(){
 
+function imgLoaded(im){
 
+    
+    document.getElementById("container").style.display="none";
+   
+    createCanvas(1600,800);
+    background(0);   
+    if(end ==1) {
+        setTimeout(function(){jump = createImg("foxy-scare.gif","","");jump.position(150,150);sBadsc.play();},2500);
+        setTimeout(function(){background(0);fill(128,0,0);textColor();textSize(50);sBadend.play();text('BAD END',250,250)},2000);
+    } else if(end ==2) {
+        doorOpen.play();
+        setTimeout(function(){gunC.play();},800);
+        setTimeout(function(){machineCol.play();},800);
+        setTimeout(function(){background(0);fill(15,82,186);textColor();textSize(50);text('YOU ARE SAVED!',250,250)},800);
+
+        //audio
+
+    }
 
 }
+
+
 function scr(event, str){
     if(ca==1){
         var x = event.pageX;
@@ -98,19 +126,19 @@ function scr(event, str){
           //  550,585,672,585,550,458
           //  92,122
           
-                var dis2 = dist(672,585-(122*3),x,y);
-                var dis5 = dist(672,585-(122*2),x,y);
-                var dis0 = dist(672,585,x,y);
-                var dis8 = dist(672,585-122,x,y);
+                var dis2 = dst(672,585-(122*3),x,y);
+                var dis5 = dst(672,585-(122*2),x,y);
+                var dis0 = dst(672,585,x,y);
+                var dis8 = dst(672,585-122,x,y);
                
-                var dis9 = dist(672+92,458,x,y);
-                var dis6 = dist(672+92,458-122,x,y);
-                var dis3 = dist(672+92,458-(2*122),x,y); 
-                var disS = dist(672+92,585,x,y);
-                let dis1 = dist(550,458-122-122,x,y);
-                var dis4 = dist(550,458-122,x,y);
-                var dis7 = dist(550,458,x,y);
-                var disA = dist(550,585,x,y); console.log(x+"    "+y);
+                var dis9 = dst(672+92,458,x,y);
+                var dis6 = dst(672+92,458-122,x,y);
+                var dis3 = dst(672+92,458-(2*122),x,y); 
+                var disS = dst(672+92,585,x,y);
+                let dis1 = dst(550,458-122-122,x,y);
+                var dis4 = dst(550,458-122,x,y);
+                var dis7 = dst(550,458,x,y);
+                var disA = dst(550,585,x,y); console.log(x+"    "+y);
                 if(dis1<r) {
                    
                     store+="1";                 
@@ -153,8 +181,32 @@ function scr(event, str){
                 document.getElementById("des").style.display="inline";
                 document.getElementById("des").innerHTML=store;
                if(store==password){
-               // document.getElementById(str).style.display="none";
                 document.getElementById("des").innerHTML="SUCCESS";
+                var c = 0;
+              loop:  for (var ob of userItems){
+               if(ob == "gun"){
+                   end =2;
+               break loop;
+                }
+               else end = 1;
+                    
+                } 
+                sBadend= loadSound();
+                sBadsc=loadSound();
+                gunC=loadSound();
+                doorOpen=loadSound();
+                machineCol=loadSound();
+                /*if(wa){
+                document.getElementById("container").style.display="none";
+                
+                createCanvas(1600,800);
+                background(0);   
+                image(jump,150,150);
+                }*/
+            
+                
+               imgLoaded();
+                
                } else if(store.length>=6){
                     store="";
                     document.getElementById("des").innerHTML="FAIL";
@@ -173,29 +225,29 @@ function scr(event, str){
 
     }
 }
-function trueORfalse(b, str){
-    if(b){
 
-    }else{
-        showImg(str);
 
-    }
+                
+function draw(){
+   
+   
 
 }
+
 var ca = 0;
 function showImg(item) {
     switch (item) {
         case "green-book":
-            document.getElementById("text").innerHTML = "Here's a green book!";           
+            document.getElementById("txt").innerHTML = "Here's a green book!";           
             break;
         case "red-book":
-            document.getElementById("text").innerHTML = "Here's a red book!";           
+            document.getElementById("txt").innerHTML = "Here's a red book!";           
             break;
         case "pink-book":
-            document.getElementById("text").innerHTML = "Here's a pink book!";           
+            document.getElementById("txt").innerHTML = "Here's a pink book!";           
             break;
         case "yellow-book":
-            document.getElementById("text").innerHTML = "Here's a yellow book!";           
+            document.getElementById("txt").innerHTML = "Here's a yellow book!";           
             break;
 
         case "pass":
@@ -217,7 +269,7 @@ function showImg(item) {
             break;
 
         default:
-            document.getElementById("text").innerHTML = "Here's something!";
+            document.getElementById("txt").innerHTML = "Here's something!";
     }
 }
 
